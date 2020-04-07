@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Terrificminds_AdminGrid::admingrid" title="Custom Admingrid" module="Terrificminds_AdminGrid" sortOrder="51" resource="Terrificminds_AdminGrid::admingrid"/>
+        <add id="Terrificminds_AdminGrid::post" title="Manage Posts" module="Terrificminds_AdminGrid" sortOrder="10" action="admingrid/post" resource="Terrificminds_AdminGrid::post" parent="Terrificminds_AdminGrid::admingrid"/>
+    </menu>
+</config>

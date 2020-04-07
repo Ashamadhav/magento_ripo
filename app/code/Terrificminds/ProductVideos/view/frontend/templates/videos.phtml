@@ -1,0 +1,140 @@
+
+<?php
+/**
+* Code for displaying product's video details on the PDP page
+*/ 
+$videoarray = [];
+$novideoarray = [];
+$product = $block->getProduct();
+$videoCollection = $block->getProductVideoCollections($product->getSku());
+if(count($videoCollection)):     
+    foreach($videoCollection as $videos): 
+        if (empty($videos->getVideoUrl() || $videos->getVideo())):        
+            $novideoarray[] = $videos;        
+        else:
+            $videoarray[] = $videos; 
+        endif;
+    endforeach;
+endif;
+?>
+
+<?php
+if(count($videoCollection)) {
+?>
+    <div class="row videomodule">
+        <div class="videomodule-container">
+            <?php foreach($videoarray as $videos):  ?>
+                <div class="col-sm-4 video_block media-block" data-id="<?php echo $videos->getId(); ?>">
+                    <div class="video-container">
+                        <div class="thumbnail">
+                            <img src="<?php echo $this->getViewFileUrl('images/play.png'); ?>" class="play-icon" />
+                            <img src="<?php echo $block->getVideoImage($videos->getThumbNailImage()); ?>">                                
+                            <span><?= __("Play"); ?><br><?= __("Video"); ?></span>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="title">
+                            <h2><?php echo $videos->getTitle(); ?></h2>
+                        </div>
+                        <div class="description">
+                            <p><?php echo $videos->getVideoDescription(); ?></p>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal video-modal videoModule" id="<?php echo $videos->getId(); ?>" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <?php if(($videos->getVideoUrl() != null) || ($videos->getVideoUrl() != '')): ?>
+                                        <video width="320" height="240" controls>
+                                            <source src="<?php echo $block->getMediaPath().$videos->getVideoUrl();?>" type="video/mp4">
+                                        </video>    
+                                    <?php else: ?>
+                                        <iframe  src="<?php echo $videos->getVideo();?>" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                    <?php endif; ?>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <?php foreach($novideoarray as $videos): ?>       
+                <div class="col-sm-4 image_block  media-block">
+                    <div class="thumbnail">
+                        <a href="" data-toggle="modal" data-target="#<?php echo $videos->getId(); ?>">
+                            <img src="<?php echo  $block->getVideoImage($videos->getThumbNailImage()); ?>" />
+                        </a>                
+                    </div>
+                    <div class="content">
+                        <div class="title">
+                            <h2><?php  echo $videos->getTitle(); ?></h2>
+                        </div>
+                        <div class="link">
+                            <a href="<?php echo $videos->getLink(); ?> ">Mehr erfahren </a>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal image-modal" id="<?php echo $videos->getId(); ?>" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" id="video-stop-button" class="btn btn-default" data-dismiss="modal">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="<?php echo  $block->getVideoImage($videos->getThumbNailImage()); ?>" /> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>   
+    </div>
+<?php
+}
+?>
+
+<script>
+
+require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: false,
+           
+            };
+            //var popup = modal(options, $('<?php //echo $videos->getId(); ?>'));
+            jQuery(".video_block").on('click',function(){
+                var idVideo = $(this).attr('data-id');
+                var popup = modal(options, $('#'+idVideo));
+                jQuery("#"+idVideo).modal("openModal");
+                
+            });
+
+            // jQuery('button.action-close').click(function(){				
+			// 	jQuery('video').each(function() {
+			// 	    this.player.pause();
+			// 	});
+				
+			// });
+            
+
+        }
+    );
+</script>

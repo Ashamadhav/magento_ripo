@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!--type name is the original class which want to change 
+        type is the  created the plugin class 
+         crated a class cart at "Terrificminds\AroundPlugin\Plugin\Cart-->
+    <type name="Magento\Checkout\Model\Cart">
+		<plugin name="aroundplugin" type="Terrificminds\AroundPlugin\Plugin\Cart" sortOrder="50" />
+	</type>
+
+        <!-- it will create a example  -->
+    <type name="Terrificminds\AroundPlugin\Controller\Index\Example">
+        <plugin name="example" type="Terrificminds\AroundPlugin\Plugin\ExamplePlugin" sortOrder="10"  />
+    </type>
+</config>

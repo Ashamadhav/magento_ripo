@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+  
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Magebay_Hello::hello_menu" title="Magebay Hello" module="Magebay_Hello" sortOrder="20" resource="Magebay_Hello::hello" />
+        <add id="Magebay_Hello::posts_menu" title="Magebay Hello" module="Magebay_Hello" sortOrder="1" parent="Magebay_Hello::hello_menu" action="hello/posts/index" resource="Magebay_Hello::posts" />
+    </menu>
+</config>

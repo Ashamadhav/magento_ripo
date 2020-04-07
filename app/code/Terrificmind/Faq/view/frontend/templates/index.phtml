@@ -1,0 +1,22 @@
+<?php 
+ $collection= $block->getTestCollection();
+?>
+<table>
+   <tr>
+      <th>ID</th>
+      <th>QUESTION</th>
+      <th>ANSWER</th>
+      
+   <?php
+   foreach($collection as $data)
+      {
+         echo '<tr>';
+         echo '<td>'.$data->getPostId().'</td>';
+         echo '<td>'.$data->getQuestion().'</td>';
+         echo '<td>'.$data->getAnswer().'</td>';
+         echo '</tr>';
+   }
+   ?>
+ </table>
+
+ 

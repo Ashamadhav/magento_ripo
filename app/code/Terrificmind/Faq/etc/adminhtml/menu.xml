@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Terrificmind_Faq::customer" title="customer" module="Terrificmind_Faq" sortOrder="51"
+         resource="MTerrificmind_Faq::customer"/>
+        <add id="Terrificmind_Faq::Faq" title="Frequently Asked Question" module="Terrificmind_Faq" sortOrder="10" 
+        action="faq/frequentlyaskedquestion" resource="Terrificmind_Faq::Faq" parent="Terrificmind_Faq::customer"/>
+  
+    </menu>
+</config>

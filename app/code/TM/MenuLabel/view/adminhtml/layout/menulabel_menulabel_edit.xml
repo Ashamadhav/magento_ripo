@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="editor"/>
+    <body>
+	   <referenceContainer name="content">
+            <block class="TM\MenuLabel\Block\Adminhtml\Menulabel\Edit" name="menulabel_menulabel_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="TM\MenuLabel\Block\Adminhtml\Menulabel\Edit\Tabs" name="menulabel_menulabel_edit_tabs">
+				<block class="TM\MenuLabel\Block\Adminhtml\Menulabel\Edit\Tab\B2BMenulabel" name="menulabel_menulabel_edit_tab_b2bmenulabel"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">b2bmenulabel_section</argument>
+                    <argument name="block" xsi:type="string">menulabel_menulabel_edit_tab_b2bmenulabel</argument>
+                </action>
+			</block>
+        </referenceContainer>
+    </body>
+</page>

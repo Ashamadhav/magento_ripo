@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="TM_MenuLabel::menulabel" title="B2B Menu Label" module="TM_MenuLabel" sortOrder="210" parent="Magento_Catalog::catalog" resource="TM_MenuLabel::menulabel"/>
+        <add id="TM_MenuLabel::menu_label" title="Add Category Label" module="TM_MenuLabel" sortOrder="20" action="menulabel/menulabel/index" resource="TM_MenuLabel::menulabel" parent="TM_MenuLabel::menulabel" />
+    </menu>
+</config>
