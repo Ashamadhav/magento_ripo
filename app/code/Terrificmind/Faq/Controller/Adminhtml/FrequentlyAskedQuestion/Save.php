@@ -15,10 +15,12 @@ class Save extends \Magento\Framework\App\Action\Action
 { 
     public function __construct(
         Context $context,
-        \Terrificmind\Faq\Model\FrequentlyAskedQuestion $faq 
+        \Terrificmind\Faq\Model\FrequentlyAskedQuestion $faq ,
+        \Magento\Backend\Model\Session $session
     ) 
     {
        $this->faq = $faq;
+       $this->session =$session;
        parent::__construct($context);
  
     }
@@ -28,18 +30,29 @@ class Save extends \Magento\Framework\App\Action\Action
 	public function execute()
     { 
         $data = $this->getRequest()->getParams();
+    //    var_dump($data) ;
+      echo($data['question']);
+     
         if ($data) {            
             $model = $this->faq;
             $id = $this->getRequest()->getParam('id');
             
-            if ($id) {//if id exist then save to the corresponding row
-                
+            if ($id) {
+               echo "in";
+                // $model->load($id);
+             
                 $model->load($id);
-            }	
-            $model->setData($data);		
-            try {
+                $model->setQuestion($data['question']);
+                $model->setAnswer($data['answer']);
                 $model->save();
                 
+                $this->_redirect('*/*/');
+                return;
+            }	
+           $model->setData($data);	
+            try {
+                $model->save();
+              
                 $this->messageManager->addSuccess(__('The Frist Grid Has been Saved.'));
                 $this->session->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
@@ -61,13 +74,5 @@ class Save extends \Magento\Framework\App\Action\Action
         $this->_redirect('*/*/');
     }
 }
-
-
-
-
-
-
-
-
 
 

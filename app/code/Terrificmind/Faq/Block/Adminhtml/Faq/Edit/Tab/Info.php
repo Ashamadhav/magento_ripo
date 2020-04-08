@@ -30,7 +30,7 @@ class Info extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $form->setHtmlIdPrefix('page_');
         $fieldset = $form->addFieldset('base_fieldset', array('legend' => __('FAQ')));
         if ($model->getId()) {
-            $fieldset->addField('id', 'hidden', array('name' => 'id'));
+            $fieldset->addField('post_id','hidden', array('name' => 'id'));
             
         }
         /**
